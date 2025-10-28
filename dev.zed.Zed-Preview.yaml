@@ -1,7 +1,7 @@
 # dev.zed.Zed-Preview.yaml
 app-id: dev.zed.Zed-Preview
 runtime: org.freedesktop.Sdk
-runtime-version: '24.08'
+runtime-version: "25.08"
 sdk: org.freedesktop.Sdk
 command: zed-wrapper
 separate-locales: false
@@ -42,8 +42,8 @@ modules:
       - /share/info
       - /share/man
       - /share/pkgconfig
-      - '*.a'
-      - '*.la'
+      - "*.a"
+      - "*.la"
     config-opts:
       - -Dgtk_doc=false
       - -Dintrospection=false
@@ -191,7 +191,7 @@ modules:
       - -Ddefault_loglevel=0
     sources:
       - type: git
-        commit: 3314b55ccd4ece8810715787e246f8407e20caab
+        commit: d581fd9b873acbf6fb22899aa388435f6c00f61a
         url: https://github.com/flathub-infra/ide-flatpak-wrapper
       - type: file
         path: README.md
