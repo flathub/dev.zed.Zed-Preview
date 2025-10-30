@@ -1,7 +1,7 @@
 # dev.zed.Zed-Preview.yaml
 app-id: dev.zed.Zed-Preview
 runtime: org.freedesktop.Sdk
-runtime-version: "25.08"
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: zed-wrapper
 separate-locales: false
@@ -42,8 +42,8 @@ modules:
       - /share/info
       - /share/man
       - /share/pkgconfig
-      - "*.a"
-      - "*.la"
+      - '*.a'
+      - '*.la'
     config-opts:
       - -Dgtk_doc=false
       - -Dintrospection=false
@@ -123,8 +123,8 @@ modules:
       - desktop-file-edit --set-icon="${FLATPAK_ID}" ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.210.4-pre/zed-linux-x86_64.tar.gz
-        sha256: 9b0f8eabc6408a859ec45cfa424228295ec649ec78b06b58b261296785f7b3d6
+        url: https://github.com/zed-industries/zed/releases/download/v0.211.0-pre/zed-linux-x86_64.tar.gz
+        sha256: 976930cc31fa01b09e71340350ca4e786b4551dd609d654ba8f1bfa7f0d3985e
         only-arches:
           - x86_64
         x-checker-data:
@@ -135,8 +135,8 @@ modules:
             | .browser_download_url
           is-main-source: true
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.210.4-pre/zed-linux-aarch64.tar.gz
-        sha256: 688988ec870e18fda877b0effea88d6304d4903e8e9a2f966788c1d87633adda
+        url: https://github.com/zed-industries/zed/releases/download/v0.211.0-pre/zed-linux-aarch64.tar.gz
+        sha256: ed2496eea3c5a6f675522ef5af50fe93321901b43fe375f681f9baa84cc48992
         only-arches:
           - aarch64
         x-checker-data:
