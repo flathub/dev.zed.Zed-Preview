@@ -9,8 +9,8 @@ cleanup:
   - /include
   - /lib/pkgconfig
   - /share/man
-  - "/lib/*.a"
-  - "/lib/*.la"
+  - /lib/*.a
+  - /lib/*.la
 finish-args:
   - --device=dri
   - --filesystem=home
@@ -63,7 +63,8 @@ modules:
         done < debian/patches/series
       # Allow building with static libbsd and libmd
       - sed -i 's/LIBS=/LIBS ?=/' Makefile
-      - make CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" LIBS="-Wl,-Bstatic -lbsd -lmd -Wl,-Bdynamic -lresolv"
+      - make CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" LIBS="-Wl,-Bstatic -lbsd -lmd -Wl,-Bdynamic
+        -lresolv"
       - install -Dm0755 nc /app/bin/nc
     sources:
       - type: archive
@@ -72,11 +73,9 @@ modules:
         x-checker-data:
           type: json
           url: https://salsa.debian.org/api/v4/projects/20760/repository/tags
-          version-query:
-            map(select(.name | startswith("debian/"))) | first | .name
+          version-query: map(select(.name | startswith("debian/"))) | first | .name
             | split("debian/") | .[1]
-          url-query:
-            '"https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/"
+          url-query: '"https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/"
             + $version + "/netcat-openbsd-debian-" + $version + ".tar.gz"'
     modules:
       - name: libbsd
@@ -128,29 +127,27 @@ modules:
       - desktop-file-edit --set-icon="${FLATPAK_ID}" ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.211.1-pre/zed-linux-x86_64.tar.gz
-        sha256: b83c3a21085b5f60ba1ae33466148ac7b0e4fb79cb0d3b0f5b43f0779f80e6e1
+        url: https://github.com/zed-industries/zed/releases/download/v0.211.2-pre/zed-linux-x86_64.tar.gz
+        sha256: a909333ece109770bfdb4ad4367b93bbeaaa3a8bb73983e7b79b66314034279c
         only-arches:
           - x86_64
         x-checker-data:
           type: json
           url: https://api.github.com/repos/zed-industries/zed/releases
           version-query: map(select(.prerelease)) | first | .tag_name
-          url-query:
-            map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-x86_64.tar.gz")
+          url-query: map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-x86_64.tar.gz")
             | .browser_download_url
           is-main-source: true
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.211.1-pre/zed-linux-aarch64.tar.gz
-        sha256: c36815de9a237b809ccc2d16f79fbca96f15497e668292e78ff692bfeb1f25f7
+        url: https://github.com/zed-industries/zed/releases/download/v0.211.2-pre/zed-linux-aarch64.tar.gz
+        sha256: 7617c5deb6916aac902a32aa512fbef6205f4d7dc2e9a6b0c66f1da39542cc49
         only-arches:
           - aarch64
         x-checker-data:
           type: json
           url: https://api.github.com/repos/zed-industries/zed/releases
           version-query: map(select(.prerelease)) | first | .tag_name
-          url-query:
-            map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-aarch64.tar.gz")
+          url-query: map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-aarch64.tar.gz")
             | .browser_download_url
           is-main-source: true
       - type: file
