@@ -1,16 +1,18 @@
 # dev.zed.Zed-Preview.yaml
 app-id: dev.zed.Zed-Preview
 runtime: org.freedesktop.Sdk
-runtime-version: '25.08'
+runtime-version: "25.08"
 sdk: org.freedesktop.Sdk
 command: zed-wrapper
 separate-locales: false
 cleanup:
   - /include
-  - /lib/pkgconfig
-  - /share/man
   - /lib/*.a
   - /lib/*.la
+  - /lib/pkgconfig
+  - /man
+  - /share/info
+  - /share/man
 finish-args:
   - --device=dri
   - --filesystem=home
@@ -28,22 +30,36 @@ finish-args:
   - --socket=ssh-auth
   - --socket=gpg-agent
 
+  - --env=SSH_ASKPASS=/app/libexec/openssh/gnome-ssh-askpass
   # Prevent Zed from escaping the sandbox by default
   - --env=ZED_FLATPAK_NO_ESCAPE=1
 
 modules:
   - shared-modules/libsecret/libsecret.json
 
+  - name: ssh-askpass
+    buildsystem: simple
+    build-commands:
+      - make -C contrib gnome-ssh-askpass3
+      - install -Dm755 contrib/gnome-ssh-askpass3 ${FLATPAK_DEST}/libexec/openssh/gnome-ssh-askpass
+    sources:
+      - type: archive
+        sha256: ccc42c0419937959263fa1dbd16dafc18c56b984c03562d2937ce56a60f798b2
+        url: https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.2p1.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 2565
+          stable-only: true
+          url-template: https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-$version.tar.gz
+
   - name: gcr
     buildsystem: meson
     cleanup:
       - /lib/debug
       - /lib/girepository-1.0
-      - /man
       - /share/gir-1.0
       - /share/doc
       - /share/gtk-doc
-      - /share/info
       - /share/pkgconfig
     config-opts:
       - -Dgtk_doc=false
@@ -73,9 +89,11 @@ modules:
         x-checker-data:
           type: json
           url: https://salsa.debian.org/api/v4/projects/20760/repository/tags
-          version-query: map(select(.name | startswith("debian/"))) | first | .name
+          version-query:
+            map(select(.name | startswith("debian/"))) | first | .name
             | split("debian/") | .[1]
-          url-query: '"https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/"
+          url-query:
+            '"https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/"
             + $version + "/netcat-openbsd-debian-" + $version + ".tar.gz"'
     modules:
       - name: libbsd
@@ -135,7 +153,8 @@ modules:
           type: json
           url: https://api.github.com/repos/zed-industries/zed/releases
           version-query: map(select(.prerelease)) | first | .tag_name
-          url-query: map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-x86_64.tar.gz")
+          url-query:
+            map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-x86_64.tar.gz")
             | .browser_download_url
           is-main-source: true
       - type: archive
@@ -147,7 +166,8 @@ modules:
           type: json
           url: https://api.github.com/repos/zed-industries/zed/releases
           version-query: map(select(.prerelease)) | first | .tag_name
-          url-query: map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-aarch64.tar.gz")
+          url-query:
+            map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-aarch64.tar.gz")
             | .browser_download_url
           is-main-source: true
       - type: file
