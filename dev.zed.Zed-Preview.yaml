@@ -1,7 +1,7 @@
 # dev.zed.Zed-Preview.yaml
 app-id: dev.zed.Zed-Preview
 runtime: org.freedesktop.Sdk
-runtime-version: "25.08"
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: zed-wrapper
 separate-locales: false
@@ -89,11 +89,9 @@ modules:
         x-checker-data:
           type: json
           url: https://salsa.debian.org/api/v4/projects/20760/repository/tags
-          version-query:
-            map(select(.name | startswith("debian/"))) | first | .name
+          version-query: map(select(.name | startswith("debian/"))) | first | .name
             | split("debian/") | .[1]
-          url-query:
-            '"https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/"
+          url-query: '"https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/"
             + $version + "/netcat-openbsd-debian-" + $version + ".tar.gz"'
     modules:
       - name: libbsd
@@ -145,29 +143,27 @@ modules:
       - desktop-file-edit --set-icon="${FLATPAK_ID}" ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.211.2-pre/zed-linux-x86_64.tar.gz
-        sha256: a909333ece109770bfdb4ad4367b93bbeaaa3a8bb73983e7b79b66314034279c
+        url: https://github.com/zed-industries/zed/releases/download/v0.211.3-pre/zed-linux-x86_64.tar.gz
+        sha256: 0437e1f73adb9f15c574945d75b7b0da072a0dbcd0a5b51973035be428570d0f
         only-arches:
           - x86_64
         x-checker-data:
           type: json
           url: https://api.github.com/repos/zed-industries/zed/releases
           version-query: map(select(.prerelease)) | first | .tag_name
-          url-query:
-            map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-x86_64.tar.gz")
+          url-query: map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-x86_64.tar.gz")
             | .browser_download_url
           is-main-source: true
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.211.2-pre/zed-linux-aarch64.tar.gz
-        sha256: 7617c5deb6916aac902a32aa512fbef6205f4d7dc2e9a6b0c66f1da39542cc49
+        url: https://github.com/zed-industries/zed/releases/download/v0.211.3-pre/zed-linux-aarch64.tar.gz
+        sha256: bd8196b3918d52a15fc9e448053b46c179f799f4e2f0687878545b07ad103e46
         only-arches:
           - aarch64
         x-checker-data:
           type: json
           url: https://api.github.com/repos/zed-industries/zed/releases
           version-query: map(select(.prerelease)) | first | .tag_name
-          url-query:
-            map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-aarch64.tar.gz")
+          url-query: map(select(.prerelease)) | first | .assets[] | select(.name=="zed-linux-aarch64.tar.gz")
             | .browser_download_url
           is-main-source: true
       - type: file
