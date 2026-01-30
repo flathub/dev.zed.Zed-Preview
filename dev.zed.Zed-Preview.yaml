@@ -35,7 +35,6 @@ finish-args:
   - --env=ZED_FLATPAK_NO_ESCAPE=1
 
 modules:
-  - shared-modules/libsecret/libsecret.json
 
   - name: ssh-askpass
     buildsystem: simple
