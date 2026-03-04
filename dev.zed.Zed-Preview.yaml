@@ -153,8 +153,8 @@ modules:
             | .browser_download_url
           is-main-source: true
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v0.226.3-pre/zed-linux-aarch64.tar.gz
-        sha256: e4090117df9379a47353372b072208e9b02e6d744aec362b7f3b1de20d34bc0f
+        url: https://github.com/zed-industries/zed/releases/download/v0.226.4-pre/zed-linux-aarch64.tar.gz
+        sha256: 8da624b04f0ab82e177b3338fd46900b5eee351a0f0d53976872eccb853a33d3
         only-arches:
           - aarch64
         x-checker-data:
