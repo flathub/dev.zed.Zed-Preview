@@ -114,8 +114,8 @@ modules:
               - --disable-shared
             sources:
               - type: archive
-                url: https://libbsd.freedesktop.org/releases/libmd-1.2.0.tar.xz
-                sha256: ac15ffb8430502fbaccdec66c5a82ee0eab0b0f36220df56710feadfeb13d0a0
+                url: https://libbsd.freedesktop.org/releases/libmd-1.3.0.tar.xz
+                sha256: fc0f1eb6b6766470326f2c014693809190e67dba84274a6fbae9d4912d066706
                 x-checker-data:
                   type: anitya
                   project-id: 15525
@@ -141,8 +141,8 @@ modules:
       - desktop-file-edit --set-icon="${FLATPAK_ID}" ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v1.22.0-pre/zed-linux-x86_64.tar.gz
-        sha256: 20f1fb519ce88100511bb09ca4c3d3dd7d0898b4cea0add03fb55966db14f332
+        url: https://github.com/zed-industries/zed/releases/download/v1.23.1-pre/zed-linux-x86_64.tar.gz
+        sha256: 442a8d7f56ced9fc8df326c81134d2606b7a65837084f562b4a2883ed292d06c
         only-arches:
           - x86_64
         x-checker-data:
@@ -153,8 +153,8 @@ modules:
             | .browser_download_url
           is-main-source: true
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v1.22.0-pre/zed-linux-aarch64.tar.gz
-        sha256: 946ec3c5b69425fa48ba245f21aedeb2f786f250d9684a684c7c5eb5620bcf43
+        url: https://github.com/zed-industries/zed/releases/download/v1.23.1-pre/zed-linux-aarch64.tar.gz
+        sha256: d40045d40df14ef4df4da38adaf4bc4f77e4fb2fa8ce5595e5031e79b9ddc74c
         only-arches:
           - aarch64
         x-checker-data:
