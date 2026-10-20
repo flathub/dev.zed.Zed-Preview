@@ -82,8 +82,8 @@ modules:
       - install -Dm0755 nc /app/bin/nc
     sources:
       - type: archive
-        url: https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/1.238-1/netcat-openbsd-debian-1.238-1.tar.gz
-        sha256: ca2fed5e3e0e9841af812bd7ad2ed9e094f5c4cb72817e91323c75e14858af4a
+        url: https://salsa.debian.org/debian/netcat-openbsd/-/archive/debian/1.239-1/netcat-openbsd-debian-1.239-1.tar.gz
+        sha256: 2a5c1304047a69a680a45834756136bde6fb1f73f9e8610b18e9c1dbff09259f
         x-checker-data:
           type: json
           url: https://salsa.debian.org/api/v4/projects/20760/repository/tags
@@ -141,8 +141,8 @@ modules:
       - desktop-file-edit --set-icon="${FLATPAK_ID}" ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v1.25.0-pre/zed-linux-x86_64.tar.gz
-        sha256: 15a5a293931e7e02bc09f673833e934ff0a42a1dbc16f29e894b823744058559
+        url: https://github.com/zed-industries/zed/releases/download/v1.25.1-pre/zed-linux-x86_64.tar.gz
+        sha256: 0aa35e53660bfa7bffb680f433b0f78e57f918817c615fa6c2ce329a902837b7
         only-arches:
           - x86_64
         x-checker-data:
@@ -153,8 +153,8 @@ modules:
             | .browser_download_url
           is-main-source: true
       - type: archive
-        url: https://github.com/zed-industries/zed/releases/download/v1.25.0-pre/zed-linux-aarch64.tar.gz
-        sha256: 829079546d9726cd458bebe88a378b42971624dc238e346632fd0f2ca06b3711
+        url: https://github.com/zed-industries/zed/releases/download/v1.25.1-pre/zed-linux-aarch64.tar.gz
+        sha256: 2961fb7494f259307c838c60f0e38b853914d2eadf0b85b71d05a129e2aba25c
         only-arches:
           - aarch64
         x-checker-data:
